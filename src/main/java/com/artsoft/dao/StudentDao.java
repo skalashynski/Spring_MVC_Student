@@ -8,4 +8,10 @@ public interface StudentDao {
     List<Student> findAllStudents();
 
     void saveStudent(Student student);
+
+    void deleteStudent(Student student);
+
+    Student getStudentById(Long id);
+
+    void updateStudent(Student student);
 }

@@ -1,32 +1,69 @@
 package com.artsoft.model;
 
-import org.springframework.web.multipart.MultipartFile;
+import com.artsoft.util.LocalDateToDateConverter;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Arrays;
 
 @Entity
-@Table( name = "students" , schema = "university")
+@Table(name = "students", schema = "university")
 public class Student {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Basic
+    @Column(name = "ssn", unique = true)
     private String ssn;
+
+    @Basic
+    @Column(name = "name")
     private String name;
+
+    @Basic
+    @Column(name = "surname")
     private String surname;
+
+    @Convert(converter = LocalDateToDateConverter.class)
+    @Column(name = "birthday")
+    //@Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private LocalDate birthday;
+
+    @Convert(converter = LocalDateToDateConverter.class)
+    @Column(name = "startStudyDate")
+    //@Temporal(TemporalType.DATE)
     private LocalDate startStudyDate;
-    private LocalDate endLocalDate;
+
+    @Convert(converter = LocalDateToDateConverter.class)
+    @Column(name = "endLocalDate")
+    //@Temporal(TemporalType.DATE)
+    private LocalDate endStudyDate;
+
+    @Basic
+    @Column(name = "username")
     private String username;
+    @Basic
+    @Column(name = "password")
     private String password;
-    private String address;
+
+    //private String address;
+    @Basic
+    @Column(name = "receivePaper")
     private boolean receivePaper;
-    private String[] favovriteFrameworks;
+
+    //private String[] favouriteFrameworks;
+    @Basic
+    @Column(name = "gender")
     private String gender;
+
+    @Basic
+    @Column(name = "country")
     private String country;
-    private String[] skills;
-    private MultipartFile photo;
+
+    //private String[] skills;
+    //private MultipartFile photo;
 
     public Student() {
     }
@@ -76,6 +113,7 @@ public class Student {
         this.birthday = birthday;
     }
 
+    //
     public LocalDate getStartStudyDate() {
         return startStudyDate;
     }
@@ -84,12 +122,12 @@ public class Student {
         this.startStudyDate = startStudyDate;
     }
 
-    public LocalDate getEndLocalDate() {
-        return endLocalDate;
+    public LocalDate getEndStudyDate() {
+        return endStudyDate;
     }
 
-    public void setEndLocalDate(LocalDate endLocalDate) {
-        this.endLocalDate = endLocalDate;
+    public void setEndStudyDate(LocalDate endStudyDate) {
+        this.endStudyDate = endStudyDate;
     }
 
     public String getUsername() {
@@ -108,13 +146,13 @@ public class Student {
         this.password = password;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
+//    public String getAddress() {
+//        return address;
+//    }
+//
+//    public void setAddress(String address) {
+//        this.address = address;
+//    }
 
     public boolean isReceivePaper() {
         return receivePaper;
@@ -124,13 +162,13 @@ public class Student {
         this.receivePaper = receivePaper;
     }
 
-    public String[] getFavovriteFrameworks() {
-        return favovriteFrameworks;
-    }
-
-    public void setFavovriteFrameworks(String[] favovriteFrameworks) {
-        this.favovriteFrameworks = favovriteFrameworks;
-    }
+//    public String[] getFavouriteFrameworks() {
+//        return favouriteFrameworks;
+//    }
+//
+//    public void setFavouriteFrameworks(String[] favouriteFrameworks) {
+//        this.favouriteFrameworks = favouriteFrameworks;
+//    }
 
     public String getGender() {
         return gender;
@@ -148,21 +186,22 @@ public class Student {
         this.country = country;
     }
 
-    public String[] getSkills() {
-        return skills;
-    }
+//    public String[] getSkills() {
+//        return skills;
+//    }
+//
+//    public void setSkills(String[] skills) {
+//        this.skills = skills;
+//    }
 
-    public void setSkills(String[] skills) {
-        this.skills = skills;
-    }
-
-    public MultipartFile getPhoto() {
+   /* public MultipartFile getPhoto() {
         return photo;
     }
 
     public void setPhoto(MultipartFile photo) {
         this.photo = photo;
     }
+*/
 
     @Override
     public boolean equals(Object o) {
@@ -179,18 +218,17 @@ public class Student {
         if (birthday != null ? !birthday.equals(student.birthday) : student.birthday != null) return false;
         if (startStudyDate != null ? !startStudyDate.equals(student.startStudyDate) : student.startStudyDate != null)
             return false;
-        if (endLocalDate != null ? !endLocalDate.equals(student.endLocalDate) : student.endLocalDate != null)
+        if (endStudyDate != null ? !endStudyDate.equals(student.endStudyDate) : student.endStudyDate != null)
             return false;
         if (username != null ? !username.equals(student.username) : student.username != null) return false;
         if (password != null ? !password.equals(student.password) : student.password != null) return false;
-        if (address != null ? !address.equals(student.address) : student.address != null) return false;
+//        if (address != null ? !address.equals(student.address) : student.address != null) return false;
         // Probably incorrect - comparing Object[] arrays with Arrays.equals
-        if (!Arrays.equals(favovriteFrameworks, student.favovriteFrameworks)) return false;
+//        if (!Arrays.equals(favouriteFrameworks, student.favouriteFrameworks)) return false;
         if (gender != null ? !gender.equals(student.gender) : student.gender != null) return false;
-        if (country != null ? !country.equals(student.country) : student.country != null) return false;
+        return (country != null ? !country.equals(student.country) : student.country != null);
         // Probably incorrect - comparing Object[] arrays with Arrays.equals
-        if (!Arrays.equals(skills, student.skills)) return false;
-        return photo != null ? photo.equals(student.photo) : student.photo == null;
+//        return Arrays.equals(skills, student.skills);
 
     }
 
@@ -202,16 +240,15 @@ public class Student {
         result = 31 * result + (surname != null ? surname.hashCode() : 0);
         result = 31 * result + (birthday != null ? birthday.hashCode() : 0);
         result = 31 * result + (startStudyDate != null ? startStudyDate.hashCode() : 0);
-        result = 31 * result + (endLocalDate != null ? endLocalDate.hashCode() : 0);
+        result = 31 * result + (endStudyDate != null ? endStudyDate.hashCode() : 0);
         result = 31 * result + (username != null ? username.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (address != null ? address.hashCode() : 0);
+//        result = 31 * result + (address != null ? address.hashCode() : 0);
         result = 31 * result + (receivePaper ? 1 : 0);
-        result = 31 * result + Arrays.hashCode(favovriteFrameworks);
+//        result = 31 * result + Arrays.hashCode(favouriteFrameworks);
         result = 31 * result + (gender != null ? gender.hashCode() : 0);
         result = 31 * result + (country != null ? country.hashCode() : 0);
-        result = 31 * result + Arrays.hashCode(skills);
-        result = 31 * result + (photo != null ? photo.hashCode() : 0);
+//        result = 31 * result + Arrays.hashCode(skills);
         return result;
     }
 
@@ -224,16 +261,15 @@ public class Student {
                 ", surname='" + surname + '\'' +
                 ", birthday=" + birthday +
                 ", startStudyDate=" + startStudyDate +
-                ", endLocalDate=" + endLocalDate +
+                ", endStudyDate=" + endStudyDate +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", address='" + address + '\'' +
+//                ", address='" + address + '\'' +
                 ", receivePaper=" + receivePaper +
-                ", favovriteFrameworks=" + Arrays.toString(favovriteFrameworks) +
+//                ", favouriteFrameworks=" + Arrays.toString(favouriteFrameworks) +
                 ", gender='" + gender + '\'' +
                 ", country='" + country + '\'' +
-                ", skills=" + Arrays.toString(skills) +
-                ", photo=" + photo +
+//                ", skills=" + Arrays.toString(skills) +
                 '}';
     }
 }

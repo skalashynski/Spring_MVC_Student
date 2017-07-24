@@ -15,6 +15,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Autowired
     private StudentDao studentDao;
+
     @Override
     public List<Student> findAllStudents() {
         return studentDao.findAllStudents();
@@ -23,5 +24,16 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public void saveStudent(Student student) {
         studentDao.saveStudent(student);
+    }
+
+    @Override
+    public Student getStudentById(String id) {
+        Student student = studentDao.getStudentById(Long.valueOf(id));
+        return student;
+    }
+
+    @Override
+    public void deleteStudent(Student student) {
+        studentDao.deleteStudent(student);
     }
 }
