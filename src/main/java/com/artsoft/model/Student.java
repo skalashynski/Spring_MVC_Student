@@ -1,6 +1,7 @@
 package com.artsoft.model;
 
 import com.artsoft.util.LocalDateToDateConverter;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -17,10 +18,12 @@ public class Student {
     @Column(name = "ssn", unique = true)
     private String ssn;
 
+    @NotEmpty
     @Basic
     @Column(name = "name")
     private String name;
 
+    @NotEmpty
     @Basic
     @Column(name = "surname")
     private String surname;
@@ -34,16 +37,19 @@ public class Student {
     @Convert(converter = LocalDateToDateConverter.class)
     @Column(name = "startStudyDate")
     //@Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private LocalDate startStudyDate;
 
     @Convert(converter = LocalDateToDateConverter.class)
     @Column(name = "endLocalDate")
     //@Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private LocalDate endStudyDate;
 
     @Basic
     @Column(name = "username")
     private String username;
+
     @Basic
     @Column(name = "password")
     private String password;
@@ -53,7 +59,8 @@ public class Student {
     @Column(name = "receivePaper")
     private boolean receivePaper;
 
-    //private String[] favouriteFrameworks;
+    //private String[] favoriteFrameworks;
+
     @Basic
     @Column(name = "gender")
     private String gender;
@@ -162,12 +169,12 @@ public class Student {
         this.receivePaper = receivePaper;
     }
 
-//    public String[] getFavouriteFrameworks() {
-//        return favouriteFrameworks;
+//    public String[] getFavoriteFrameworks() {
+//        return favoriteFrameworks;
 //    }
 //
-//    public void setFavouriteFrameworks(String[] favouriteFrameworks) {
-//        this.favouriteFrameworks = favouriteFrameworks;
+//    public void setFavoriteFrameworks(String[] favouriteFrameworks) {
+//        this.favoriteFrameworks = favouriteFrameworks;
 //    }
 
     public String getGender() {
@@ -223,8 +230,8 @@ public class Student {
         if (username != null ? !username.equals(student.username) : student.username != null) return false;
         if (password != null ? !password.equals(student.password) : student.password != null) return false;
 //        if (address != null ? !address.equals(student.address) : student.address != null) return false;
-        // Probably incorrect - comparing Object[] arrays with Arrays.equals
-//        if (!Arrays.equals(favouriteFrameworks, student.favouriteFrameworks)) return false;
+        //Probably incorrect - comparing Object[] arrays with Arrays.equals
+//        if (!Arrays.equals(favoriteFrameworks, student.favoriteFrameworks)) return false;
         if (gender != null ? !gender.equals(student.gender) : student.gender != null) return false;
         return (country != null ? !country.equals(student.country) : student.country != null);
         // Probably incorrect - comparing Object[] arrays with Arrays.equals
@@ -245,7 +252,7 @@ public class Student {
         result = 31 * result + (password != null ? password.hashCode() : 0);
 //        result = 31 * result + (address != null ? address.hashCode() : 0);
         result = 31 * result + (receivePaper ? 1 : 0);
-//        result = 31 * result + Arrays.hashCode(favouriteFrameworks);
+//        result = 31 * result + Arrays.hashCode(favoriteFrameworks);
         result = 31 * result + (gender != null ? gender.hashCode() : 0);
         result = 31 * result + (country != null ? country.hashCode() : 0);
 //        result = 31 * result + Arrays.hashCode(skills);
@@ -266,7 +273,7 @@ public class Student {
                 ", password='" + password + '\'' +
 //                ", address='" + address + '\'' +
                 ", receivePaper=" + receivePaper +
-//                ", favouriteFrameworks=" + Arrays.toString(favouriteFrameworks) +
+//                ", favouriteFrameworks=" + Arrays.toString(favoriteFrameworks) +
                 ", gender='" + gender + '\'' +
                 ", country='" + country + '\'' +
 //                ", skills=" + Arrays.toString(skills) +

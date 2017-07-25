@@ -12,9 +12,23 @@
 <head>
     <title>Add Student</title>
 </head>
+<style>
+    .error {
+        color: #ff0000;
+    }
+
+    .errorblock {
+        color: #000;
+        background-color: #ffEEEE;
+        border: 3px solid #ff0000;
+        padding: 8px;
+        margin: 16px;
+    }
+</style>
 <body>
 <table>
-    <form:form action="add-student" method="post">
+    <form:form action="add-student" method="post" commandName="student">
+        <form:errors path="*" cssClass="errorblock" element="div"/>
         <tr>
             <td>Ssn</td>
             <td><form:input path="ssn"/></td>
@@ -22,10 +36,12 @@
         <tr>
             <td>Name</td>
             <td><form:input path="name"/></td>
+            <td><form:errors cssClass="error" path="name"/></td>
         </tr>
         <tr>
             <td>Surname</td>
             <td><form:input path="surname"></form:input></td>
+            <td><form:errors cssClass="error" path="surname"/></td>
         </tr>
         <tr>
             <td>Birthday</td>
@@ -55,11 +71,16 @@
             <td>Country</td>
             <td><form:input path="country"/></td>
         </tr>
+        <%--<tr>--%>
+            <%--<td><form:label path="favoriteFrameworks">Favorite Frameworks</form:label></td>--%>
+            <%--<td><form:checkboxes items="${webFrameworkList}" path="favoriteFrameworks"/></td>--%>
+        <%--</tr>--%>
         <tr>
             <td colspan="2"><input type="submit" value="Submit"/></td>
         </tr>
     </form:form>
 </table>
+<a href="${pageContext.request.contextPath}/" title="Back">Back</a>
 <br/>
 <a href="/students">Show students</a>
 </body>
