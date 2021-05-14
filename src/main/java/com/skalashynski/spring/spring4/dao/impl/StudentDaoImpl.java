@@ -1,8 +1,8 @@
-package com.artsoft.dao.impl;
+package com.skalashynski.spring.spring4.dao.impl;
 
-import com.artsoft.dao.AbstractDao;
-import com.artsoft.dao.StudentDao;
-import com.artsoft.model.Student;
+import com.skalashynski.spring.spring4.dao.AbstractDao;
+import com.skalashynski.spring.spring4.dao.StudentDao;
+import com.skalashynski.spring.spring4.model.Student;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

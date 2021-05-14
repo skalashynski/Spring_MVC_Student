@@ -1,8 +1,8 @@
-package com.artsoft.service.impl;
+package com.skalashynski.spring.spring4.service.impl;
 
-import com.artsoft.dao.StudentDao;
-import com.artsoft.model.Student;
-import com.artsoft.service.StudentService;
+import com.skalashynski.spring.spring4.dao.StudentDao;
+import com.skalashynski.spring.spring4.model.Student;
+import com.skalashynski.spring.spring4.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

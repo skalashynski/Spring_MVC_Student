@@ -18,13 +18,13 @@
         <property name="prefix" value="/WEB-INF/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
-    <bean id="studentService" class="com.artsoft.service.impl.StudentServiceImpl"/>
-    <bean id="studentDao" class="com.artsoft.dao.impl.StudentDaoImpl"/>
+    <bean id="studentService" class="com.skalashynski.spring.spring4.service.impl.StudentServiceImpl"/>
+    <bean id="studentDao" class="com.skalashynski.spring.spring4.dao.impl.StudentDaoImpl"/>
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="annotatedClasses">
             <list>
-                <value>com.artsoft.model.Student</value>
+                <value>com.skalashynski.spring.spring4.model.Student</value>
             </list>
         </property>
         <property name="hibernateProperties">

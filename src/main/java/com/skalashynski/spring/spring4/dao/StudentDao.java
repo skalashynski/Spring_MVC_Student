@@ -1,6 +1,6 @@
-package com.artsoft.dao;
+package com.skalashynski.spring.spring4.dao;
 
-import com.artsoft.model.Student;
+import com.skalashynski.spring.spring4.model.Student;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.artsoft.model;
+package com.skalashynski.spring.spring4.model;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;

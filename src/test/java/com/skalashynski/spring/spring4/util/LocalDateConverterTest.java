@@ -1,4 +1,4 @@
-package com.artsoft.util;
+package com.skalashynski.spring.spring4.util;
 
 import org.junit.Test;
 

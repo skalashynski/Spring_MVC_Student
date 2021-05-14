@@ -1,4 +1,4 @@
-package com.artsoft.dao;
+package com.skalashynski.spring.spring4.dao;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;

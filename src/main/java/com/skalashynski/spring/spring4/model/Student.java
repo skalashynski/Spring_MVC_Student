@@ -1,6 +1,6 @@
-package com.artsoft.model;
+package com.skalashynski.spring.spring4.model;
 
-import com.artsoft.util.LocalDateToDateConverter;
+import com.skalashynski.spring.spring4.util.LocalDateToDateConverter;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 

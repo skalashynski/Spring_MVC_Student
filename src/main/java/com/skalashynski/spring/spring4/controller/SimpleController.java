@@ -1,7 +1,7 @@
-package com.artsoft.controller;
+package com.skalashynski.spring.spring4.controller;
 
-import com.artsoft.model.Student;
-import com.artsoft.service.StudentService;
+import com.skalashynski.spring.spring4.model.Student;
+import com.skalashynski.spring.spring4.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
